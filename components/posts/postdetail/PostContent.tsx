@@ -1,10 +1,16 @@
 import PostHeader from 'components/posts/postdetail/PostHeader'
 import ReactMarkdown from 'react-markdown'
 import classes from 'styles/components/posts/postdetail/PostContent.module.css'
-import DUMMY_POST from 'dummy/dummyContentData' // Todo: 後で修正
+import { PostData } from 'lib/postsUtil'
 
-const PostContent = () => {
-  const { title, image, slug, content } = DUMMY_POST
+/**
+ * [slug].tsxから呼び出されるときにundefined要素は取り除いてある
+ * @param {PostData} post
+ * @return {JSX.Element}
+ * @constructor
+ */
+const PostContent = ({ post }: { post: PostData }) => {
+  const { title, image, slug, content } = post
   const imagePath = `/images/posts/${slug}/${image}`
 
   return (

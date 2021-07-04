@@ -17,20 +17,22 @@ export type PostData = {
 
 const postsDirectory = path.join(process.cwd(), 'posts')
 
+export const getPostsFiles = () => {
+  return fs.readdirSync(postsDirectory, 'utf-8')
+}
+
 /**
  * 個々のファイルからdata及びcontent情報を返す関数
- * @param {string} fileName
+ * @param {string} postIdentifier
  * @return {PostData}
  */
-export const getPostData = (fileName: string): PostData => {
-  const filePath = path.join(postsDirectory, fileName)
+export const getPostData = (postIdentifier: string): PostData => {
+  // ファイル拡張子.mdを削除する。
+  const postSlug = postIdentifier.replace(/\.md/, '')
+  const filePath = path.join(postsDirectory, `${postSlug}.md`)
   const fileContent = fs.readFileSync(filePath, 'utf-8')
   const { data, content } = matter(fileContent)
 
-  /**
-   * Post Meta Data Analyse
-   */
-  const postSlug = fileName.replace(/\.md/, '')
   return {
     slug: postSlug,
     title: data.title,
@@ -49,7 +51,7 @@ export const getPostData = (fileName: string): PostData => {
  * @desc use getPostData(postFile)
  */
 export const getAllPosts = (): PostData[] => {
-  const postFiles = fs.readdirSync(postsDirectory, 'utf-8')
+  const postFiles = getPostsFiles()
   const allPosts = postFiles.map((postFile) => getPostData(postFile))
 
   /**
