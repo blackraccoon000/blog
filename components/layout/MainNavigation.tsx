@@ -1,4 +1,4 @@
-import Link from 'next/Link'
+import Link from 'next/link'
 import classes from 'styles/components/layout/MainNavigation.module.css'
 import Logo from 'components/layout/Logo'
 
