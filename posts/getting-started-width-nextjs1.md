@@ -26,3 +26,5 @@ In this article, we'll dive into the core concepts and features NextJS has to of
 - Rich Data Fetching Capabilities
 - Image Optimization
 - Much More
+
+![Create route via your file + folder structure](nextjs-file-based-routing.png)
