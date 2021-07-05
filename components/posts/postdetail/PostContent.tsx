@@ -1,12 +1,19 @@
 import { ElementType, ReactNode, Fragment } from 'react'
 import ReactMarkdown from 'react-markdown'
 import Image from 'next/image'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
+import atomDark from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark'
+import js from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript'
+import css from 'react-syntax-highlighter/dist/cjs/languages/prism/css'
+import http from 'react-syntax-highlighter/dist/cjs/languages/prism/http'
 
 import PostHeader from 'components/posts/postdetail/PostHeader'
 import classes from 'styles/components/posts/postdetail/PostContent.module.css'
 import { PostData } from 'lib/postsUtil'
+
+SyntaxHighlighter.registerLanguage('js', js)
+SyntaxHighlighter.registerLanguage('css', css)
+SyntaxHighlighter.registerLanguage('http', http)
 
 /**
  * [slug].tsxから呼び出されるときにundefined要素は取り除いてある
