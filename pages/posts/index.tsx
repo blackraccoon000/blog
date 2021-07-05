@@ -1,19 +1,17 @@
 import AllPosts from 'components/posts/AllPosts'
 import { GetStaticProps } from 'next'
-import { getFeaturedPosts, PostData } from 'lib/postsUtil'
+import { getAllPosts, PostData } from 'lib/postsUtil'
 
-// Todo:後で修正
 type Props = { posts: PostData[] }
 
 const AllPostsPage = ({ posts }: Props) => {
   return <AllPosts posts={posts} />
 }
 
-// Todo:後で修正
 export const getStaticProps: GetStaticProps<Props> = () => {
   return {
     props: {
-      posts: getFeaturedPosts(),
+      posts: getAllPosts(),
     },
     revalidate: 1800,
   }
